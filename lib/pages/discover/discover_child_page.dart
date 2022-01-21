@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class DiscoverChildPage extends StatelessWidget {
   final String titleStr;
-  DiscoverChildPage({required this.titleStr});
+  DiscoverChildPage({this.titleStr});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

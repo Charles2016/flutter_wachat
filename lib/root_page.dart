@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wechat_demo/pages/chat_page.dart';
+import 'package:wechat_demo/config_common.dart';
+import 'package:wechat_demo/pages/chat/chat_page.dart';
 import 'package:wechat_demo/pages/discover/discover_page.dart';
-import 'package:wechat_demo/pages/friends_page.dart';
+import 'package:wechat_demo/pages/friends/friends_page.dart';
 import 'package:wechat_demo/pages/mine_page.dart';
 
 class RootPage extends StatefulWidget {
@@ -12,13 +13,21 @@ class RootPage extends StatefulWidget {
   }
 }
 
-class _RootPageState extends State<RootPage> {
+class _RootPageState extends State<RootPage> with AutomaticKeepAliveClientMixin {
   int _currentIndex = 0;
   List <Widget> _pages = [ChatPage(),FriendsPage(),DiscoverPage(),MinePage()];
   @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
-      body: _pages[_currentIndex],
+        body: IndexedStack(
+          index: _currentIndex,
+          children: _pages,
+        ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           setState((){
